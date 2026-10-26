@@ -67,7 +67,7 @@ cd .\SAP-ONE-ERP-main
 npm run dev
 ```
 
-If frontend dependencies have not been installed yet, run `npm run install:frontend` first. You can also run `npm run build` to build the frontend.
+If frontend dependencies have not been installed yet, run `npm run install:frontend` first. Use `npm run backend` to start the Python backend, or `npm run build` to build the frontend.
 
 ### Prerequisites
 - Python 3.10+
