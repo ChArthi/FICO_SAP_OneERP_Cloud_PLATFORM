@@ -37,18 +37,34 @@ async def lifespan(app: FastAPI):
     # Seed default system administrator & default demo company if not exists
     db = SessionLocal()
     try:
-        admin = db.query(User).filter(User.username == "admin").first()
+        admin = db.query(User).filter(User.username == settings.ADMIN_USERNAME).first()
+        if not admin and settings.APP_ENV == "development":
+            admin = (
+                db.query(User)
+                .filter(User.username == "admin", User.email == "admin@thestackly.com")
+                .first()
+            )
+
         if not admin:
+            if not settings.ADMIN_PASSWORD:
+                raise RuntimeError("Set ADMIN_PASSWORD before creating the initial administrator.")
+
             admin = User(
-                username="admin",
-                email="admin@thestackly.com",
-                password_hash=hash_password("admin123"),
+                username=settings.ADMIN_USERNAME,
+                email=settings.ADMIN_EMAIL,
+                password_hash=hash_password(settings.ADMIN_PASSWORD),
                 role="ADMIN",
                 is_active=True,
             )
             db.add(admin)
             db.commit()
-            logger.info("Created default administrator: admin / admin123")
+            logger.info("Created initial administrator: %s", settings.ADMIN_USERNAME)
+        elif settings.APP_ENV == "development":
+            admin.username = settings.ADMIN_USERNAME
+            admin.email = settings.ADMIN_EMAIL
+            if settings.ADMIN_PASSWORD:
+                admin.password_hash = hash_password(settings.ADMIN_PASSWORD)
+            db.commit()
 
         company_service = CompanyService(db)
         companies = company_service.list_companies()

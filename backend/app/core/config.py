@@ -8,6 +8,10 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "STACKLY SAP OneERP Cloud Platform"
     PROJECT_VERSION: str = "1.0.0"
     API_V1_PREFIX: str = "/api/v1"
+    APP_ENV: str = "production"
+    ADMIN_USERNAME: str = "arthi"
+    ADMIN_EMAIL: str = "arthi123@gmail.com"
+    ADMIN_PASSWORD: str | None = None
 
     # MySQL Database Settings
     DB_USER: str = os.getenv("DB_USER", "root")

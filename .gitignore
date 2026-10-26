@@ -26,6 +26,7 @@ backend/erp.db
 # Environment variables & local secrets
 .env
 .env.local
+backend/.dev-secret-key
 
 # IDE & Editor files
 .vscode/
@@ -34,4 +35,3 @@ backend/erp.db
 *.swo
 .DS_Store
 Thumbs.db
-

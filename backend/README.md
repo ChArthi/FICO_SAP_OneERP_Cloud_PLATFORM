@@ -125,9 +125,9 @@ python run.py
 - 📖 **OpenAPI / Swagger Documentation**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - ❤️ **Health Check**: [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health)
 
-### Default Administrator Credentials:
-- **Username**: `admin`
-- **Password**: `admin123`
+### Local Administrator Setup
+
+For local development, set `ADMIN_USERNAME`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` in the ignored `backend/.env.local` file. The development launcher loads this file when starting the backend.
 
 ---
 

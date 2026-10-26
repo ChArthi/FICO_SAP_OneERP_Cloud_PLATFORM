@@ -12,6 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
 from app.main import app
+from app.core.config import settings
 
 
 def test_platform():
@@ -22,7 +23,11 @@ def test_platform():
         print("Health check OK:", resp.json())
 
         print("\n--- 2. Testing Administrator Authentication ---")
-        auth_resp = client.post("/api/v1/auth/login", json={"username": "admin", "password": "admin123"})
+        assert settings.ADMIN_PASSWORD, "Set ADMIN_PASSWORD before running platform tests."
+        auth_resp = client.post(
+            "/api/v1/auth/login",
+            json={"username": settings.ADMIN_USERNAME, "password": settings.ADMIN_PASSWORD},
+        )
         assert auth_resp.status_code == 200, f"Auth failed: {auth_resp.text}"
         auth_data = auth_resp.json()["data"]
         token = auth_data["access_token"]
@@ -196,4 +201,3 @@ def test_platform():
 
 if __name__ == "__main__":
     test_platform()
-

@@ -114,9 +114,13 @@ python run.py
 - 📖 **Interactive Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - ❤️ **Health Check**: [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health)
 
-**Default Demo Credentials:**
-- **Username**: `admin`
-- **Password**: `admin123`
+For local development, configure the initial administrator in the ignored `backend/.env.local` file:
+```env
+ADMIN_USERNAME=arthi
+ADMIN_EMAIL=arthi123@gmail.com
+ADMIN_PASSWORD=<choose-a-local-password>
+```
+The development launcher preserves its signing key in an ignored local file so login credentials remain valid between restarts. Set `ADMIN_PASSWORD` in the environment when creating an administrator in a non-development deployment.
 
 ---
 
