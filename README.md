@@ -61,6 +61,14 @@ SAPONE_ERP/
 
 ## 🚀 Quick Start
 
+Run project commands from the repository root (`SAP-ONE-ERP-main`), not its parent download folder. The root npm scripts forward to the frontend:
+```powershell
+cd .\SAP-ONE-ERP-main
+npm run dev
+```
+
+If frontend dependencies have not been installed yet, run `npm run install:frontend` first. You can also run `npm run build` to build the frontend.
+
 ### Prerequisites
 - Python 3.10+
 - MySQL Server 8.0+
