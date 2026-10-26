@@ -31,7 +31,7 @@ from .api.routes import (
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context: initializes database schema and seeds initial data."""
-    logger.info("Initializing STACKLY SAP OneERP Database Schema in MySQL...")
+    logger.info("Initializing STACKLY SAP OneERP database schema...")
     init_db()
 
     # Seed default system administrator & default demo company if not exists

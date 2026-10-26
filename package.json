@@ -4,7 +4,8 @@
   "scripts": {
     "install:frontend": "npm --prefix frontend install",
     "dev": "npm --prefix frontend run dev",
-    "backend": "python run.py",
+    "backend": "python run_dev.py",
+    "backend:mysql": "python run.py",
     "build": "npm --prefix frontend run build",
     "preview": "npm --prefix frontend run preview"
   }

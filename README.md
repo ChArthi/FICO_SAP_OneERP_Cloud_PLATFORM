@@ -67,7 +67,9 @@ cd .\SAP-ONE-ERP-main
 npm run dev
 ```
 
-If frontend dependencies have not been installed yet, run `npm run install:frontend` first. Use `npm run backend` to start the Python backend, or `npm run build` to build the frontend.
+If frontend dependencies have not been installed yet, run `npm run install:frontend` first. Use `npm run backend` to start the backend locally with SQLite (no MySQL setup required), or `npm run build` to build the frontend.
+
+The local backend stores its database in the ignored `backend/dev.db` file and generates a temporary signing key when started. For a configured MySQL deployment, set `DATABASE_URL` and `SECRET_KEY` in the environment and run `npm run backend:mysql`.
 
 ### Prerequisites
 - Python 3.10+

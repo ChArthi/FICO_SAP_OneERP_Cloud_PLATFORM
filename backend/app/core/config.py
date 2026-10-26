@@ -1,5 +1,6 @@
 import os
 from urllib.parse import quote_plus
+from pydantic import Field
 from pydantic_settings import BaseSettings
 
 
@@ -14,6 +15,7 @@ class Settings(BaseSettings):
     DB_HOST: str = os.getenv("DB_HOST", "localhost")
     DB_PORT: str = os.getenv("DB_PORT", "3306")
     DB_NAME: str = os.getenv("DB_NAME", "saperp")  # Primary database as shown in MySQL workbench
+    DATABASE_URL_OVERRIDE: str | None = Field(default=None, validation_alias="DATABASE_URL")
 
     # JWT Authentication Settings
     SECRET_KEY: str
@@ -22,6 +24,9 @@ class Settings(BaseSettings):
 
     @property
     def DATABASE_URL(self) -> str:
+        if self.DATABASE_URL_OVERRIDE:
+            return self.DATABASE_URL_OVERRIDE
+
         # URL encode password to handle special chars like '@'
         safe_password = quote_plus(self.DB_PASSWORD)
         return (
